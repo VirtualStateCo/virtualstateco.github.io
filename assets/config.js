@@ -12,5 +12,5 @@ window.VIRTUALSTATE_CONFIG = {
   },
 
   // Replace this with the real public contact address before publishing.
-  contactEmail: "contact@virtualstate.example"
+  contactEmail: "al285854@uji.es"
 };
