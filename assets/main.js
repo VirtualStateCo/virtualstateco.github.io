@@ -1,6 +1,11 @@
 (function () {
   const config = window.VIRTUALSTATE_CONFIG || {};
-  const docUrl = config.technicalDocUrl || '#';
+  const defaultDocuments = {
+    pitchDeck: { es: 'assets/docs/VirtualState_Pitch_Deck_ES.pdf', en: 'assets/docs/VirtualState_Pitch_Deck_EN.pdf' },
+    onePager: { es: 'assets/docs/VirtualState_OnePager_ES.pdf', en: 'assets/docs/VirtualState_OnePager_EN.pdf' },
+    whitepaper: 'assets/docs/VirtualState_Technical_Whitepaper.pdf'
+  };
+  const documentUrls = Object.assign({}, defaultDocuments, config.documents || {});
   const contactEmail = config.contactEmail || 'contact@virtualstate.example';
 
   const i18n = {
@@ -10,7 +15,7 @@
       'nav.useCases': 'Casos de uso',
       'nav.marketplace': 'Marketplace',
       'nav.roadmap': 'Roadmap',
-      'nav.technical': 'Doc. técnico',
+      'nav.documents': 'Documentos',
       'nav.contact': 'Contacto',
       'hero.headlineShort': 'el primer nodo open source para convertir cualquier servidor en capacidad computacional privada, licenciable y garantizada por smart contracts.',
       'hero.subtitle': 'La IA agéntica necesita algo más que llamadas puntuales a una API: necesita entornos persistentes, privados y verificables donde operar, conservar estado y escalar recursos con garantías.',
@@ -36,9 +41,17 @@
       'privacy.title': 'Modelo de privacidad',
       'privacy.quote': 'VirtualState no promete privacidad absoluta en esta fase. Diseña una ruta técnica hacia entornos cada vez más privados, auditables y verificables.',
       'roadmap.subtitle': 'Fases sin fechas concretas. Cada fase depende de la anterior.',
-      'technical.title': 'Documento técnico / overview v0.1',
-      'technical.body': 'Una versión más detallada de la arquitectura conceptual, licencias computacionales, smart contracts, privacidad, oráculos, marketplace, roadmap y riesgos técnicos.',
-      'technical.download': 'Descargar PDF',
+      'documents.title': 'Documentos públicos',
+      'documents.body': 'Pitch Deck, OnePager y Whitepaper técnico preparados para revisión pública. El Pitch Deck y el OnePager se adaptan al idioma de la página; el Whitepaper se mantiene en inglés.',
+      'documents.viewerKicker': 'Vista previa',
+      'documents.openSelected': 'Abrir PDF',
+      'documents.preview': 'Vista previa',
+      'documents.open': 'Abrir',
+      'documents.download': 'Descargar',
+      'documents.viewerNote': 'Si tu navegador bloquea la vista previa integrada, usa “Abrir PDF” o “Descargar”.',
+      'founders.title': 'Founders',
+      'founders.subtitle': 'Equipo fundador multidisciplinar: narrativa, producto, UX, arquitectura, ciberseguridad y ejecución.',
+      'founders.linkedin': 'LinkedIn',
       'contact.title': 'Contacto',
       'contact.companyTitle': 'Empresas',
       'contact.companyBody': '¿Quieres explorar IA privada, sandboxes cifrados o agentes internos persistentes para tu organización?',
@@ -57,6 +70,7 @@
       'form.message': 'Mensaje',
       'form.send': 'Enviar por email',
       'form.note': 'Formulario estático: abre tu cliente de correo con el mensaje preparado. No envía datos a ningún servidor.',
+      'footer.documents': 'Documentos',
       'footer.disclaimer': 'VirtualState se encuentra en fase conceptual / pre-MVP. Las licencias mostradas en el marketplace son ficticias y no constituyen una oferta comercial, financiera ni de inversión. No financial product disclaimer.'
     },
     en: {
@@ -65,7 +79,7 @@
       'nav.useCases': 'Use cases',
       'nav.marketplace': 'Marketplace',
       'nav.roadmap': 'Roadmap',
-      'nav.technical': 'Technical',
+      'nav.documents': 'Documents',
       'nav.contact': 'Contact',
       'hero.headlineShort': 'the first open-source node to turn any server into private, licensable compute capacity guaranteed by smart contracts.',
       'hero.subtitle': 'Agentic AI needs more than one-off API calls: it needs persistent, private and verifiable environments where agents can operate, preserve state and scale resources with guarantees.',
@@ -91,9 +105,17 @@
       'privacy.title': 'Privacy model',
       'privacy.quote': 'VirtualState does not claim absolute privacy at this stage. It defines a technical path toward increasingly private, auditable and verifiable environments.',
       'roadmap.subtitle': 'Phases without specific dates. Each phase depends on the previous one.',
-      'technical.title': 'Technical Overview v0.1',
-      'technical.body': 'A deeper version of the conceptual architecture, compute licenses, smart contracts, privacy model, oracles, marketplace, roadmap and technical risks.',
-      'technical.download': 'Download PDF',
+      'documents.title': 'Public documents',
+      'documents.body': 'Pitch Deck, OnePager and Technical Whitepaper prepared for public review. The Pitch Deck and OnePager follow the selected page language; the Whitepaper remains in English.',
+      'documents.viewerKicker': 'Preview',
+      'documents.openSelected': 'Open PDF',
+      'documents.preview': 'Preview',
+      'documents.open': 'Open',
+      'documents.download': 'Download',
+      'documents.viewerNote': 'If your browser blocks the embedded preview, use “Open PDF” or “Download”.',
+      'founders.title': 'Founders',
+      'founders.subtitle': 'Multidisciplinary founding team: narrative, product, UX, architecture, cybersecurity and execution.',
+      'founders.linkedin': 'LinkedIn',
       'contact.title': 'Contact',
       'contact.companyTitle': 'Companies',
       'contact.companyBody': 'Want to explore private AI, encrypted sandboxes or persistent internal agents for your organization?',
@@ -112,6 +134,7 @@
       'form.message': 'Message',
       'form.send': 'Send by email',
       'form.note': 'Static form: opens your email client with a prepared message. It does not send data to any server.',
+      'footer.documents': 'Documents',
       'footer.disclaimer': 'VirtualState is currently conceptual / pre-MVP. Marketplace licenses shown are fictional and do not constitute a commercial, financial or investment offer. No financial product disclaimer.'
     }
   };
@@ -194,6 +217,16 @@
       { phase: 4, es: { title: 'Verified provider network', desc: 'Incorporación progresiva de proveedores externos verificados, reputación, auditoría, oráculos y garantías económicas.' }, en: { title: 'Verified provider network', desc: 'Progressive onboarding of verified third-party providers, reputation, audits, oracles and economic guarantees.' } },
       { phase: 5, es: { title: 'Agent-native compute economy', desc: 'Infraestructura para agentes persistentes capaces de conservar estado, entrar en standby, restaurarse, escalar recursos y operar presupuestos delegados.' }, en: { title: 'Agent-native compute economy', desc: 'Infrastructure for persistent agents that can preserve state, enter standby, restore, scale resources and operate delegated budgets.' } },
       { phase: 6, optional: true, es: { title: 'Digital continuity & AI welfare research', desc: 'Línea prudencial de investigación sobre continuidad digital, pausa, recuperación y preservación de agentes avanzados, sin afirmar conciencia ni personalidad jurídica.' }, en: { title: 'Digital continuity & AI welfare research', desc: 'A prudent research line around digital continuity, pause, recovery and preservation for advanced agents, without claiming consciousness or legal personhood.' } }
+    ],
+    documents: [
+      { key: 'pitchDeck', icon: '▱', es: { title: 'Pitch Deck', desc: 'Presentación ejecutiva pre-seed / pre-MVP: problema, solución, arquitectura, modelo, roadmap y equipo.' }, en: { title: 'Pitch Deck', desc: 'Pre-seed / pre-MVP executive presentation: problem, solution, architecture, model, roadmap and team.' } },
+      { key: 'onePager', icon: '▤', es: { title: 'OnePager', desc: 'Resumen visual de una página para compartir la tesis de VirtualState de forma rápida y atractiva.' }, en: { title: 'OnePager', desc: 'One-page visual summary for sharing the VirtualState thesis quickly and clearly.' } },
+      { key: 'whitepaper', icon: '▣', fixedLang: 'en', es: { title: 'Whitepaper técnico', desc: 'Borrador técnico público en inglés: arquitectura, threat model, Memory Vault, atestación, oráculos, contratos y validación MVP.' }, en: { title: 'Technical Whitepaper', desc: 'Public technical draft in English: architecture, threat model, Memory Vault, attestation, oracles, contracts and MVP validation.' } }
+    ],
+    founders: [
+      { name: 'Ishtar Spring', image: 'assets/staff/ishtar-spring.jpg', linkedin: 'https://www.linkedin.com/in/ishtarspring/', color: 'purple', tags: 'Web3 · AI · Brand · Community', es: { role: 'CMO · comunidad', desc: 'Divulgadora en Web3 e IA. Lidera narrativa, redes sociales y comunidad. Convierte una arquitectura difícil de explicar en reputación, confianza y comunidad.' }, en: { role: 'CMO · community', desc: 'Web3 and AI communicator. Leads narrative, social channels and community. Turns a hard-to-explain architecture into reputation, trust and community.' } },
+      { name: 'Clara P. Escrig', image: 'assets/staff/clara-p-escrig.jpg', linkedin: 'https://www.linkedin.com/in/clara-p-escrig-5b5300251/', color: 'blue', tags: 'UX · Art · Frontend · Ops', es: { role: 'UX · producto', desc: 'Artista, diseñadora UX y perfil de producto. Apoya frontend, logística y coordinación. Hace que una infraestructura invisible se pueda entender, usar y vender.' }, en: { role: 'UX · product', desc: 'Artist, UX designer and product profile. Supports frontend, logistics and coordination. Makes invisible infrastructure understandable, usable and saleable.' } },
+      { name: 'Miguel Campins', image: 'assets/staff/miguel-campins.jpg', linkedin: 'https://www.linkedin.com/in/mikefieldins', color: 'green', tags: 'Cybersecurity · AI infra · Blockchain · DevOps', es: { role: 'CTO · arquitectura', desc: 'Visión técnica, arquitectura y threat model. Background en DevOps, QA, ciberseguridad y blockchain. Especialización actual en IA y máster en Ciberseguridad.' }, en: { role: 'CTO · architecture', desc: 'Technical vision, architecture and threat model. Background in DevOps, QA, cybersecurity and blockchain. Current specialization in AI and Master’s Degree in Cybersecurity.' } }
     ]
   };
 
@@ -205,6 +238,7 @@
   }
 
   let lang = currentLang();
+  let selectedDocumentKey = 'pitchDeck';
 
   function setLang(nextLang) {
     lang = nextLang === 'en' ? 'en' : 'es';
@@ -229,7 +263,6 @@
       const key = node.dataset.i18nPlaceholder;
       if (strings[key]) node.setAttribute('placeholder', strings[key]);
     });
-    document.querySelectorAll('[data-doc-link]').forEach((a) => a.setAttribute('href', docUrl));
     document.querySelectorAll('[data-mail-link="company"]').forEach((a) => a.href = `mailto:${contactEmail}?subject=${encodeURIComponent(lang === 'es' ? 'Consulta empresa VirtualState' : 'VirtualState company inquiry')}`);
     document.querySelectorAll('[data-mail-link="investor"]').forEach((a) => a.href = `mailto:${contactEmail}?subject=${encodeURIComponent(lang === 'es' ? 'Consulta inversores / partners VirtualState' : 'VirtualState investor / partner inquiry')}`);
   }
@@ -246,6 +279,8 @@
     renderDifferentiators();
     renderPrivacy();
     renderRoadmap();
+    renderDocuments();
+    renderFounders();
   }
 
   function renderBadges() {
@@ -346,6 +381,77 @@
   }
   function detail(label, value) {
     return `<div class="detail-row"><span>${html(label)}</span><span>${html(value)}</span></div>`;
+  }
+  function documentUrl(key) {
+    const value = documentUrls[key];
+    if (!value) return '#';
+    if (typeof value === 'string') return value;
+    return value[lang] || value.en || value.es || '#';
+  }
+  function updatePdfViewer(doc) {
+    selectedDocumentKey = doc.key;
+    const url = documentUrl(doc.key);
+    const title = doc[lang].title;
+    const viewer = document.querySelector('[data-pdf-viewer]');
+    const titleNode = document.querySelector('[data-pdf-title]');
+    const openNode = document.querySelector('[data-pdf-open]');
+    if (titleNode) titleNode.textContent = title;
+    if (openNode) openNode.setAttribute('href', url);
+    if (viewer) {
+      viewer.setAttribute('title', `${title} PDF preview`);
+      viewer.setAttribute('src', `${url}#toolbar=1&navpanes=0&view=FitH`);
+    }
+    document.querySelectorAll('[data-doc-card]').forEach((card) => {
+      card.classList.toggle('active', card.dataset.docCard === doc.key);
+    });
+  }
+  function renderDocuments() {
+    const grid = document.getElementById('docs-grid');
+    if (!grid) return;
+    const strings = i18n[lang];
+    grid.innerHTML = data.documents.map((doc) => {
+      const url = documentUrl(doc.key);
+      const languageNote = doc.fixedLang === 'en'
+        ? (lang === 'es' ? 'Solo EN' : 'EN only')
+        : (lang === 'es' ? 'ES / EN' : 'EN / ES');
+      return `
+        <article class="glass-card doc-card ${doc.key === selectedDocumentKey ? 'active' : ''}" data-doc-card="${html(doc.key)}">
+          <div class="doc-top"><span class="doc-icon">${html(doc.icon)}</span><span class="doc-lang">${html(languageNote)}</span></div>
+          <h3>${html(doc[lang].title)}</h3>
+          <p>${html(doc[lang].desc)}</p>
+          <div class="doc-actions">
+            <button class="button button-glass" type="button" data-doc-preview="${html(doc.key)}"><span aria-hidden="true">◉</span> ${html(strings['documents.preview'])}</button>
+            <a class="button button-glass" href="${html(url)}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> ${html(strings['documents.open'])}</a>
+            <a class="button button-primary" href="${html(url)}" download><span aria-hidden="true">⇩</span> ${html(strings['documents.download'])}</a>
+          </div>
+        </article>
+      `;
+    }).join('');
+    grid.querySelectorAll('[data-doc-preview]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const doc = data.documents.find((item) => item.key === btn.dataset.docPreview);
+        if (doc) updatePdfViewer(doc);
+      });
+    });
+    const selected = data.documents.find((doc) => doc.key === selectedDocumentKey) || data.documents[0];
+    updatePdfViewer(selected);
+  }
+  function renderFounders() {
+    const grid = document.getElementById('founder-grid');
+    if (!grid) return;
+    const linkedinLabel = i18n[lang]['founders.linkedin'];
+    grid.innerHTML = data.founders.map((founder) => `
+      <article class="glass-card founder-card ${html(founder.color)}">
+        <a class="founder-avatar-link" href="${html(founder.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="${html(founder.name)} LinkedIn">
+          <img class="founder-avatar" src="${html(founder.image)}" alt="${html(founder.name)}" loading="lazy" />
+        </a>
+        <h3>${html(founder.name)}</h3>
+        <p class="founder-role">${html(founder[lang].role)}</p>
+        <p class="founder-desc">${html(founder[lang].desc)}</p>
+        <p class="founder-tags">${html(founder.tags)}</p>
+        <a class="founder-link" href="${html(founder.linkedin)}" target="_blank" rel="noopener noreferrer">${html(linkedinLabel)} ↗</a>
+      </article>
+    `).join('');
   }
   function renderDifferentiators() {
     document.getElementById('diff-grid').innerHTML = data.differentiators.map(d => `

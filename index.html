@@ -30,7 +30,7 @@
         <a href="#use-cases" data-i18n="nav.useCases">Casos de uso</a>
         <a href="#marketplace" data-i18n="nav.marketplace">Marketplace</a>
         <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
-        <a href="#technical" data-i18n="nav.technical">Doc. técnico</a>
+        <a href="#documents" data-i18n="nav.documents">Documentos</a>
         <a href="#contact" data-i18n="nav.contact">Contacto</a>
       </nav>
 
@@ -51,7 +51,7 @@
       <a href="#use-cases" data-i18n="nav.useCases">Casos de uso</a>
       <a href="#marketplace" data-i18n="nav.marketplace">Marketplace</a>
       <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
-      <a href="#technical" data-i18n="nav.technical">Doc. técnico</a>
+      <a href="#documents" data-i18n="nav.documents">Documentos</a>
       <a href="#contact" data-i18n="nav.contact">Contacto</a>
     </nav>
   </header>
@@ -170,14 +170,26 @@
       </div>
     </section>
 
-    <section id="technical" class="section" aria-labelledby="technical-title">
-      <div class="container narrow reveal">
-        <article class="download-card">
-          <div class="big-icon">▣</div>
-          <h2 id="technical-title" data-i18n="technical.title">Documento técnico / overview v0.1</h2>
-          <p data-i18n="technical.body">Una versión más detallada de la arquitectura conceptual, licencias computacionales, smart contracts, privacidad, oráculos, marketplace, roadmap y riesgos técnicos.</p>
-          <a class="button button-primary" href="#" target="_blank" rel="noopener noreferrer" data-doc-link><span aria-hidden="true">⇩</span> <span data-i18n="technical.download">Descargar PDF</span></a>
-        </article>
+    <section id="documents" class="section" aria-labelledby="documents-title">
+      <div class="container wide reveal">
+        <div class="section-heading compact">
+          <h2 id="documents-title" data-i18n="documents.title">Documentos públicos</h2>
+          <p data-i18n="documents.body">Pitch Deck, OnePager y Whitepaper técnico preparados para revisión pública. El Pitch Deck y el OnePager se adaptan al idioma de la página; el Whitepaper se mantiene en inglés.</p>
+        </div>
+        <div class="documents-layout">
+          <div class="docs-grid" id="docs-grid"></div>
+          <article class="glass-card pdf-viewer-card">
+            <div class="viewer-top">
+              <div>
+                <span class="viewer-kicker" data-i18n="documents.viewerKicker">Vista previa</span>
+                <h3 data-pdf-title>Pitch Deck</h3>
+              </div>
+              <a class="button button-glass viewer-open" href="#" target="_blank" rel="noopener noreferrer" data-pdf-open><span aria-hidden="true">↗</span> <span data-i18n="documents.openSelected">Abrir PDF</span></a>
+            </div>
+            <iframe class="pdf-frame" src="about:blank" title="PDF preview" loading="lazy" data-pdf-viewer></iframe>
+            <p class="microcopy" data-i18n="documents.viewerNote">Si tu navegador bloquea la vista previa integrada, usa “Abrir PDF” o “Descargar”.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -218,6 +230,16 @@
         </form>
       </div>
     </section>
+
+    <section id="founders" class="section founders-section" aria-labelledby="founders-title">
+      <div class="container reveal">
+        <div class="section-heading compact">
+          <h2 id="founders-title" data-i18n="founders.title">Founders</h2>
+          <p data-i18n="founders.subtitle">Equipo fundador multidisciplinar: narrativa, producto, UX, arquitectura, ciberseguridad y ejecución.</p>
+        </div>
+        <div class="founder-grid" id="founder-grid"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -230,7 +252,7 @@
         <div class="footer-links">
           <span>Concept landing</span>
           <span>© 2026 VirtualState</span>
-          <a href="#" target="_blank" rel="noopener noreferrer" data-doc-link>Technical Overview v0.1</a>
+          <a href="#documents" data-i18n="footer.documents">Documents</a>
           <span>Showcase only</span>
         </div>
       </div>

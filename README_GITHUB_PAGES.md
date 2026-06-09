@@ -1,6 +1,6 @@
 # VirtualState static landing for GitHub Pages
 
-This folder is a dependency-free static version of the Base44/Vite landing page.
+This folder is a dependency-free static landing page.
 It does **not** require npm, Vite, React, Base44, a local proxy or a build step.
 
 ## Files
@@ -12,23 +12,36 @@ assets/main.js
 assets/config.js
 assets/logo.png
 assets/favicon-*.png
+assets/docs/*.pdf
+assets/staff/*.jpg
 .nojekyll
+CNAME
 ```
 
-## Configure before publishing
+## Documents
 
-Edit `assets/config.js`:
+The public document section is driven from `assets/config.js`:
 
 ```js
 window.VIRTUALSTATE_CONFIG = {
-  technicalDocUrl: "https://YOUR_PUBLIC_MIRROR/VirtualState_Documento_Tecnico_Overview.pdf",
+  documents: {
+    pitchDeck: {
+      es: "assets/docs/VirtualState_Pitch_Deck_ES.pdf",
+      en: "assets/docs/VirtualState_Pitch_Deck_EN.pdf"
+    },
+    onePager: {
+      es: "assets/docs/VirtualState_OnePager_ES.pdf",
+      en: "assets/docs/VirtualState_OnePager_EN.pdf"
+    },
+    whitepaper: "assets/docs/VirtualState_Technical_Whitepaper.pdf"
+  },
   contactEmail: "contact@your-domain.example"
 };
 ```
 
-The technical document download buttons and footer link are filled from `technicalDocUrl`.
-The contact buttons and static form use `contactEmail` through `mailto:`.
-No data is sent to any server.
+The Pitch Deck and OnePager switch between Spanish and English with the page language. The Whitepaper is always served in English.
+
+The contact buttons and static form use `contactEmail` through `mailto:`. No data is sent to any server.
 
 ## Test locally
 
@@ -69,5 +82,6 @@ Option B: publish from `/docs`.
 
 - The marketplace is intentionally marked as a mockup.
 - The contact form is static: it opens the user's email client with a prepared message.
+- The PDF preview uses the browser's built-in PDF viewer; if a browser blocks embedded preview, the Open and Download buttons still work.
 - The page uses relative asset paths, so it works both at `username.github.io` and at `username.github.io/repo-name/`.
 - `.nojekyll` is included to make GitHub Pages serve static assets without Jekyll processing.
