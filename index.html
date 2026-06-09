@@ -1,41 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VirtualState</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VirtualState Node · Private and verifiable compute continuity for agentic AI</title>
+  <meta name="description" content="VirtualState Node is an open-source node vision for private, persistent and licensable compute capacity backed by programmable guarantees." />
+  <meta name="theme-color" content="#080b16" />
+  <meta property="og:title" content="VirtualState Node" />
+  <meta property="og:description" content="Private, persistent and verifiable compute continuity for the agentic AI era." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.png" />
+  <link rel="icon" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/favicon-180.png" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="site-bg" aria-hidden="true"></div>
 
-    <div class="container">
-        <h1>VirtualState</h1>
-        <p>A landing page for our revolutionary project!</p>
+  <header class="navbar" data-navbar>
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="VirtualState home">
+        <img src="assets/logo.png" alt="" class="brand-logo" />
+        <span class="brand-word">Virtual<span>State</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#overview" data-i18n="nav.overview">Visión general</a>
+        <a href="#how-it-works" data-i18n="nav.how">Cómo funciona</a>
+        <a href="#use-cases" data-i18n="nav.useCases">Casos de uso</a>
+        <a href="#marketplace" data-i18n="nav.marketplace">Marketplace</a>
+        <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+        <a href="#technical" data-i18n="nav.technical">Doc. técnico</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-toggle" role="group" aria-label="Language selector">
+          <button type="button" data-lang-button="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang-button="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
+    <nav class="mobile-menu" id="mobile-menu" data-mobile-menu aria-label="Mobile navigation">
+      <a href="#overview" data-i18n="nav.overview">Visión general</a>
+      <a href="#how-it-works" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#use-cases" data-i18n="nav.useCases">Casos de uso</a>
+      <a href="#marketplace" data-i18n="nav.marketplace">Marketplace</a>
+      <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+      <a href="#technical" data-i18n="nav.technical">Doc. técnico</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="orb orb-main"></div>
+      <div class="orb orb-secondary"></div>
+      <div class="container hero-inner reveal">
+        <div class="badge-row" id="hero-badges"></div>
+        <div class="logo-mark" aria-hidden="true"><img src="assets/logo.png" alt="" /></div>
+        <h1 id="hero-title">
+          <span>VirtualState</span> <span class="gradient-text">Node</span>
+          <small data-i18n="hero.headlineShort">el primer nodo open source para convertir cualquier servidor en capacidad computacional privada, licenciable y garantizada por smart contracts.</small>
+        </h1>
+        <p class="hero-copy" data-i18n="hero.subtitle">La IA agéntica necesita algo más que llamadas puntuales a una API: necesita entornos persistentes, privados y verificables donde operar, conservar estado y escalar recursos con garantías.</p>
+        <div class="pillar-row" id="hero-pillars"></div>
+        <div class="cta-row">
+          <a class="button button-primary" href="#overview"><span aria-hidden="true">↓</span> <span data-i18n="hero.explore">Explorar el concepto</span></a>
+          <a class="button button-glass" href="#marketplace"><span aria-hidden="true">◉</span> <span data-i18n="hero.marketplace">Ver mockup del marketplace</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section" aria-labelledby="overview-title">
+      <div class="container reveal">
+        <div class="section-heading">
+          <h2 id="overview-title"><span data-i18n="overview.titlePrefix">¿Qué es</span> <span class="gradient-text">VirtualState</span>?</h2>
+          <p data-i18n="overview.body">Una capa de infraestructura para cómputo persistente, privado y programable. VirtualState convierte recursos de servidores en capacidad computacional privada y licenciable. El nodo puede funcionar sobre cloud, bare metal, servidores propios o proveedores verificados. Las licencias computacionales representan derechos de uso sobre recursos — no productos financieros. Los smart contracts gestionan precio, disponibilidad, downtime, colateral y recompra.</p>
+        </div>
+        <div class="card-grid three" id="overview-cards"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why-title">
+      <div class="container reveal">
+        <div class="section-heading">
+          <h2 id="why-title" data-i18n="why.title">¿Por qué ahora?</h2>
+          <p data-i18n="why.subtitle">De chatbot reactivo a agente persistente: un cambio que transforma la demanda de infraestructura.</p>
+        </div>
+        <div class="compare-grid">
+          <article class="glass-card muted-card">
+            <div class="card-title-row"><span class="icon-chip muted">💬</span><h3 data-i18n="why.chatbotTitle">Chatbot reactivo</h3></div>
+            <ul class="soft-list" id="chatbot-list"></ul>
+          </article>
+          <article class="glass-card strong-card">
+            <div class="card-title-row"><span class="icon-chip">🤖</span><h3 data-i18n="why.agentTitle">Agente persistente</h3></div>
+            <ul class="soft-list bright" id="agent-list"></ul>
+          </article>
+        </div>
+        <blockquote class="quote-card" data-i18n="why.note">La oportunidad no depende de afirmar que la IA ya escribe todo el código. Depende de una tendencia más profunda: el trabajo digital está pasando de respuestas puntuales a procesos agénticos persistentes.</blockquote>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section" aria-labelledby="how-title">
+      <div class="container reveal">
+        <div class="section-heading">
+          <h2 id="how-title" data-i18n="how.title">Cómo funciona</h2>
+          <p data-i18n="how.subtitle">Arquitectura conceptual y flujo operacional — diseño pre-MVP.</p>
+        </div>
+        <h3 class="subheading" data-i18n="how.layersTitle">Arquitectura por capas</h3>
+        <div class="layer-stack" id="layer-stack"></div>
+        <h3 class="subheading" data-i18n="how.flowTitle">Flujo operacional</h3>
+        <div class="flow-grid" id="flow-grid"></div>
+        <p class="microcopy" data-i18n="how.disclaimer">Diseño conceptual / pre-MVP — no una red operativa actual.</p>
+      </div>
+    </section>
+
+    <section id="use-cases" class="section" aria-labelledby="use-title">
+      <div class="container reveal">
+        <div class="section-heading compact">
+          <h2 id="use-title" data-i18n="use.title">Casos de uso</h2>
+        </div>
+        <div class="card-grid three" id="use-cases-grid"></div>
+        <div class="note-card" data-i18n="use.note">A largo plazo, VirtualState también explora una dimensión de continuidad digital y AI welfare: mecanismos para que agentes avanzados puedan pausar, conservar estado o restaurarse bajo reglas definidas por sus operadores humanos o legales.</div>
+      </div>
+    </section>
+
+    <section id="marketplace" class="section" aria-labelledby="marketplace-title">
+      <div class="container wide reveal">
+        <div class="section-heading compact">
+          <h2 id="marketplace-title">Compute <span class="gradient-text">Marketplace</span></h2>
+        </div>
+        <div class="note-card centered" data-i18n="marketplace.note">Mockup preview: los recursos mostrados son ficticios y no están actualmente a la venta. Esta sección ilustra cómo podría visualizarse un marketplace poblado de licencias computacionales.</div>
+        <div class="market-grid" id="market-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="diff-title">
+      <div class="container reveal">
+        <div class="section-heading">
+          <h2 id="diff-title" data-i18n="diff.title">Diferenciadores</h2>
+          <p data-i18n="diff.subtitle">El software base será open source para generar confianza. El negocio no depende de cerrar el código, sino de operar la red, dar soporte, crear liquidez y confianza.</p>
+        </div>
+        <div class="mini-grid" id="diff-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="container narrow reveal">
+        <div class="section-heading compact">
+          <h2 id="privacy-title" data-i18n="privacy.title">Modelo de privacidad</h2>
+        </div>
+        <div class="privacy-list" id="privacy-list"></div>
+        <blockquote class="quote-card" data-i18n="privacy.quote">VirtualState no promete privacidad absoluta en esta fase. Diseña una ruta técnica hacia entornos cada vez más privados, auditables y verificables.</blockquote>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section" aria-labelledby="roadmap-title">
+      <div class="container narrow reveal">
+        <div class="section-heading compact">
+          <h2 id="roadmap-title">Roadmap</h2>
+          <p data-i18n="roadmap.subtitle">Fases sin fechas concretas. Cada fase depende de la anterior.</p>
+        </div>
+        <div class="accordion" id="roadmap-accordion"></div>
+      </div>
+    </section>
+
+    <section id="technical" class="section" aria-labelledby="technical-title">
+      <div class="container narrow reveal">
+        <article class="download-card">
+          <div class="big-icon">▣</div>
+          <h2 id="technical-title" data-i18n="technical.title">Documento técnico / overview v0.1</h2>
+          <p data-i18n="technical.body">Una versión más detallada de la arquitectura conceptual, licencias computacionales, smart contracts, privacidad, oráculos, marketplace, roadmap y riesgos técnicos.</p>
+          <a class="button button-primary" href="#" target="_blank" rel="noopener noreferrer" data-doc-link><span aria-hidden="true">⇩</span> <span data-i18n="technical.download">Descargar PDF</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container reveal">
+        <div class="section-heading compact"><h2 id="contact-title" data-i18n="contact.title">Contacto</h2></div>
+        <div class="contact-grid">
+          <article class="glass-card contact-card">
+            <span class="icon-chip">🏢</span>
+            <h3 data-i18n="contact.companyTitle">Empresas</h3>
+            <p data-i18n="contact.companyBody">¿Quieres explorar IA privada, sandboxes cifrados o agentes internos persistentes para tu organización?</p>
+            <a class="button button-primary" href="#" data-mail-link="company"><span aria-hidden="true">✉</span> <span data-i18n="contact.companyCta">Contacto para empresas</span></a>
+          </article>
+          <article class="glass-card contact-card">
+            <span class="icon-chip accent">🤝</span>
+            <h3 data-i18n="contact.investorTitle">Inversores y partners</h3>
+            <p data-i18n="contact.investorBody">¿Quieres conocer la visión, el roadmap técnico o colaborar en la construcción de la red?</p>
+            <a class="button button-glass" href="#" data-mail-link="investor"><span aria-hidden="true">✉</span> <span data-i18n="contact.investorCta">Contacto para inversores y partners</span></a>
+          </article>
+        </div>
+        <form class="visual-form" data-contact-form>
+          <div class="form-row">
+            <input name="name" data-i18n-placeholder="form.name" placeholder="Nombre" />
+            <input name="organization" data-i18n-placeholder="form.organization" placeholder="Organización" />
+          </div>
+          <input name="email" placeholder="Email" type="email" />
+          <select name="interest" aria-label="Interés">
+            <option value="" data-i18n="form.interest">Interés</option>
+            <option value="enterprise" data-i18n="form.enterprise">IA privada para empresas</option>
+            <option value="agents" data-i18n="form.agents">Agentes persistentes</option>
+            <option value="provider" data-i18n="form.provider">Proveedor de cómputo</option>
+            <option value="investor" data-i18n="form.investor">Inversión / partnership</option>
+            <option value="other" data-i18n="form.other">Otro</option>
+          </select>
+          <textarea name="message" data-i18n-placeholder="form.message" placeholder="Mensaje"></textarea>
+          <button class="button button-primary full" type="submit" data-i18n="form.send">Enviar por email</button>
+          <p class="microcopy" data-i18n="form.note">Formulario estático: abre tu cliente de correo con el mensaje preparado. No envía datos a ningún servidor.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <a class="brand small" href="#top" aria-label="VirtualState home">
+          <img src="assets/logo.png" alt="" class="brand-logo" />
+          <span class="brand-word">Virtual<span>State</span></span>
+        </a>
+        <div class="footer-links">
+          <span>Concept landing</span>
+          <span>© 2026 VirtualState</span>
+          <a href="#" target="_blank" rel="noopener noreferrer" data-doc-link>Technical Overview v0.1</a>
+          <span>Showcase only</span>
+        </div>
+      </div>
+      <div class="footer-disclaimer" data-i18n="footer.disclaimer">VirtualState se encuentra en fase conceptual / pre-MVP. Las licencias mostradas en el marketplace son ficticias y no constituyen una oferta comercial, financiera ni de inversión. No financial product disclaimer.</div>
+    </div>
+  </footer>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/main.js"></script>
 </body>
 </html>
