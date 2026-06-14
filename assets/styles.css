@@ -251,16 +251,16 @@ p { color: var(--muted); line-height: 1.72; }
 .founder-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
 .founder-card { position: relative; overflow: hidden; text-align: center; padding: 30px 28px 28px; }
 .founder-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: .95; }
-.founder-card.purple::before { background: linear-gradient(90deg, var(--primary), #a56dff); }
-.founder-card.blue::before { background: linear-gradient(90deg, var(--accent), #26dbc8); }
-.founder-card.green::before { background: linear-gradient(90deg, var(--accent-2), #30d67a); }
+.founder-card.cmo::before { background: linear-gradient(90deg, var(--primary), #a56dff); }
+.founder-card.ux::before { background: linear-gradient(90deg, var(--accent), #26dbc8); }
+.founder-card.cto::before { background: linear-gradient(90deg, var(--accent-2), #30d67a); }
 .founder-card::after { content: ""; position: absolute; width: 280px; height: 180px; left: 50%; bottom: -80px; transform: translateX(-50%); border-radius: 999px; background: radial-gradient(circle, rgba(52,166,255,.12), transparent 70%); pointer-events: none; }
 .founder-avatar-link { display: inline-block; position: relative; z-index: 1; margin-bottom: 18px; border-radius: 999px; }
 .founder-avatar { width: 136px; height: 136px; object-fit: cover; border-radius: 999px; border: 3px solid rgba(52,166,255,.72); box-shadow: 0 0 0 5px rgba(52,166,255,.12), 0 14px 38px rgba(0,0,0,.28); background: rgba(255,255,255,.04); }
 .founder-card h3 { margin-bottom: 6px; position: relative; z-index: 1; }
 .founder-role { margin: 0 0 20px; color: var(--primary); font-weight: 900; font-size: 1.05rem; }
-.founder-card.blue .founder-role { color: var(--accent); }
-.founder-card.green .founder-role { color: var(--accent-2); }
+.founder-card.ux .founder-role { color: var(--accent); }
+.founder-card.cto .founder-role { color: var(--accent-2); }
 .founder-desc { min-height: 112px; margin-bottom: 20px; font-size: .88rem; color: var(--muted); line-height: 1.45; }
 .founder-tags { color: rgba(241,245,251,.9); font-weight: 820; font-size: .82rem; margin-bottom: 20px; }
 .founder-link { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--accent); border: 1px solid rgba(52,166,255,.24); background: rgba(52,166,255,.08); border-radius: 999px; padding: 8px 12px; font-size: .78rem; font-weight: 850; position: relative; z-index: 1; }
