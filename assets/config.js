@@ -8,7 +8,9 @@ window.VIRTUALSTATE_CONFIG = {
       es: "assets/docs/VirtualState_OnePager_ES.pdf",
       en: "assets/docs/VirtualState_OnePager_EN.pdf"
     },
-    whitepaper: "assets/docs/VirtualState_Technical_Whitepaper.pdf"
+    whitepaper: "assets/docs/VirtualState_Technical_Whitepaper.pdf",
+    visualPitch: "https://virtualstate.co/virtualstate-pitch/",
+    technicalOverview: "https://virtualstate.co/virtualstate-tech-overview/"
   },
 
   // Replace this with the real public contact address before publishing.

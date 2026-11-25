@@ -3,7 +3,9 @@
   const defaultDocuments = {
     pitchDeck: { es: 'assets/docs/VirtualState_Pitch_Deck_ES.pdf', en: 'assets/docs/VirtualState_Pitch_Deck_EN.pdf' },
     onePager: { es: 'assets/docs/VirtualState_OnePager_ES.pdf', en: 'assets/docs/VirtualState_OnePager_EN.pdf' },
-    whitepaper: 'assets/docs/VirtualState_Technical_Whitepaper.pdf'
+    whitepaper: 'assets/docs/VirtualState_Technical_Whitepaper.pdf',
+    visualPitch: 'https://virtualstate.co/virtualstate-pitch/',
+    technicalOverview: 'https://virtualstate.co/virtualstate-tech-overview/'
   };
   const documentUrls = Object.assign({}, defaultDocuments, config.documents || {});
   const contactEmail = config.contactEmail || 'contact@virtualstate.example';
@@ -42,7 +44,7 @@
       'privacy.quote': 'VirtualState no promete privacidad absoluta en esta fase. Diseña una ruta técnica hacia entornos cada vez más privados, auditables y verificables.',
       'roadmap.subtitle': 'Fases sin fechas concretas. Cada fase depende de la anterior.',
       'documents.title': 'Documentos públicos',
-      'documents.body': 'Pitch Deck, OnePager y Whitepaper técnico preparados para revisión pública. El Pitch Deck y el OnePager se adaptan al idioma de la página; el Whitepaper se mantiene en inglés.',
+      'documents.body': 'Presentaciones, recursos visuales y documentación técnica de VirtualState. El Pitch Deck y el OnePager se adaptan al idioma de la página; el Whitepaper se mantiene en inglés.',
       'documents.viewerKicker': 'Vista previa',
       'documents.openSelected': 'Abrir PDF',
       'documents.preview': 'Vista previa',
@@ -106,7 +108,7 @@
       'privacy.quote': 'VirtualState does not claim absolute privacy at this stage. It defines a technical path toward increasingly private, auditable and verifiable environments.',
       'roadmap.subtitle': 'Phases without specific dates. Each phase depends on the previous one.',
       'documents.title': 'Public documents',
-      'documents.body': 'Pitch Deck, OnePager and Technical Whitepaper prepared for public review. The Pitch Deck and OnePager follow the selected page language; the Whitepaper remains in English.',
+      'documents.body': 'Presentations, visual resources and technical documentation for VirtualState. The Pitch Deck and OnePager follow the selected page language; the Whitepaper remains in English.',
       'documents.viewerKicker': 'Preview',
       'documents.openSelected': 'Open PDF',
       'documents.preview': 'Preview',
@@ -221,7 +223,9 @@
     documents: [
       { key: 'pitchDeck', icon: '▱', es: { title: 'Pitch Deck', desc: 'Presentación ejecutiva pre-seed / pre-MVP: problema, solución, arquitectura, modelo, roadmap y equipo.' }, en: { title: 'Pitch Deck', desc: 'Pre-seed / pre-MVP executive presentation: problem, solution, architecture, model, roadmap and team.' } },
       { key: 'onePager', icon: '▤', es: { title: 'OnePager', desc: 'Resumen visual de una página para compartir la tesis de VirtualState de forma rápida y atractiva.' }, en: { title: 'OnePager', desc: 'One-page visual summary for sharing the VirtualState thesis quickly and clearly.' } },
-      { key: 'whitepaper', icon: '▣', fixedLang: 'en', es: { title: 'Whitepaper técnico', desc: 'Borrador técnico público en inglés: arquitectura, threat model, Memory Vault, atestación, oráculos, contratos y validación MVP.' }, en: { title: 'Technical Whitepaper', desc: 'Public technical draft in English: architecture, threat model, Memory Vault, attestation, oracles, contracts and MVP validation.' } }
+      { key: 'whitepaper', icon: '▣', fixedLang: 'en', es: { title: 'Whitepaper técnico', desc: 'Borrador técnico público en inglés: arquitectura, threat model, Memory Vault, atestación, oráculos, contratos y validación MVP.' }, en: { title: 'Technical Whitepaper', desc: 'Public technical draft in English: architecture, threat model, Memory Vault, attestation, oracles, contracts and MVP validation.' } },
+      { key: 'visualPitch', icon: '▶', type: 'web', fixedLang: 'es', es: { title: 'Pitch visual · 60 segundos', desc: 'Animación de la red de nodos, la continuidad de los agentes y el marketplace.' }, en: { title: 'Visual pitch · 60 seconds', desc: 'Animated overview of the node network, agent continuity and the marketplace.' } },
+      { key: 'technicalOverview', icon: '◇', type: 'web', es: { title: 'Overview técnico', desc: 'Presentación visual de la arquitectura, VirtualState Node, privacidad, replicación y garantías programables.' }, en: { title: 'Technical overview', desc: 'Visual introduction to the architecture, VirtualState Node, privacy, replication and programmable guarantees.' } }
     ],
     founders: [
       { name: 'Clara P. Escrig', image: 'assets/staff/clara-p-escrig.jpg', linkedin: 'https://www.linkedin.com/in/clara-p-escrig-5b5300251/', color: 'blue', tags: 'UX · Art · Frontend · Ops', es: { role: 'UX · producto', desc: 'Artista, diseñadora UX y perfil de producto. Apoya frontend, logística y coordinación. Hace que una infraestructura invisible se pueda entender, usar y vender.' }, en: { role: 'UX · product', desc: 'Artist, UX designer and product profile. Supports frontend, logistics and coordination. Makes invisible infrastructure understandable, usable and saleable.' } },
@@ -389,6 +393,7 @@
     return value[lang] || value.en || value.es || '#';
   }
   function updatePdfViewer(doc) {
+    if (doc.type === 'web') return;
     selectedDocumentKey = doc.key;
     const url = documentUrl(doc.key);
     const title = doc[lang].title;
@@ -411,18 +416,23 @@
     const strings = i18n[lang];
     grid.innerHTML = data.documents.map((doc) => {
       const url = documentUrl(doc.key);
+      const isWeb = doc.type === 'web';
       const languageNote = doc.fixedLang === 'en'
         ? (lang === 'es' ? 'Solo EN' : 'EN only')
-        : (lang === 'es' ? 'ES / EN' : 'EN / ES');
+        : doc.fixedLang === 'es'
+          ? (lang === 'es' ? 'Solo ES' : 'ES only')
+          : (lang === 'es' ? 'ES / EN' : 'EN / ES');
       return `
         <article class="glass-card doc-card ${doc.key === selectedDocumentKey ? 'active' : ''}" data-doc-card="${html(doc.key)}">
           <div class="doc-top"><span class="doc-icon">${html(doc.icon)}</span><span class="doc-lang">${html(languageNote)}</span></div>
           <h3>${html(doc[lang].title)}</h3>
           <p>${html(doc[lang].desc)}</p>
           <div class="doc-actions">
+            ${isWeb ? `<a class="button button-primary" href="${html(url)}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> ${html(strings['documents.open'])}</a>` : `
             <button class="button button-glass" type="button" data-doc-preview="${html(doc.key)}"><span aria-hidden="true">◉</span> ${html(strings['documents.preview'])}</button>
             <a class="button button-glass" href="${html(url)}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> ${html(strings['documents.open'])}</a>
             <a class="button button-primary" href="${html(url)}" download><span aria-hidden="true">⇩</span> ${html(strings['documents.download'])}</a>
+            `}
           </div>
         </article>
       `;
@@ -433,7 +443,7 @@
         if (doc) updatePdfViewer(doc);
       });
     });
-    const selected = data.documents.find((doc) => doc.key === selectedDocumentKey) || data.documents[0];
+    const selected = data.documents.find((doc) => doc.type !== 'web' && doc.key === selectedDocumentKey) || data.documents.find((doc) => doc.type !== 'web');
     updatePdfViewer(selected);
   }
   function renderFounders() {
